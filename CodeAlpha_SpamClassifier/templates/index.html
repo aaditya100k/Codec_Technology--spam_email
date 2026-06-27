@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spam Email Classifier</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <h1 class="title">📧 Spam Email Classifier</h1>
+            <p class="subtitle">AI-Powered Email Classification System</p>
+        </header>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Input Section -->
+            <section class="input-section">
+                <div class="input-card">
+                    <label for="messageInput" class="label">Enter Email or Message</label>
+                    <textarea 
+                        id="messageInput" 
+                        class="textarea"
+                        placeholder="Paste your email or message here... (minimum 10 characters)"
+                        rows="8"
+                    ></textarea>
+                    <div class="input-info">
+                        <span id="charCount" class="char-count">0</span> characters
+                    </div>
+                    <button id="classifyBtn" class="classify-btn">
+                        <span class="btn-text">Classify Message</span>
+                        <span class="btn-spinner" style="display: none;">⏳</span>
+                    </button>
+                </div>
+            </section>
+
+            <!-- Result Section -->
+            <section id="resultSection" class="result-section" style="display: none;">
+                <div id="resultCard" class="result-card"></div>
+                <div class="feedback-section" style="display: none;">
+                    <h3>Was this classification correct?</h3>
+                    <div class="feedback-buttons">
+                        <button class="feedback-btn correct-btn" data-feedback="true">
+                            ✓ Yes, Correct
+                        </button>
+                        <button class="feedback-btn incorrect-btn" data-feedback="false">
+                            ✗ No, Incorrect
+                        </button>
+                    </div>
+                    <textarea id="feedbackComment" class="feedback-comment" placeholder="Optional: Add a comment about why this classification is wrong..."></textarea>
+                </div>
+            </section>
+
+            <!-- Examples Section -->
+            <section class="examples-section">
+                <h2>Quick Examples</h2>
+                <div class="examples-grid">
+                    <button class="example-btn" data-text="Congratulations! You have won $1,000,000! Click here to claim your prize immediately!">
+                        Spam Example 1
+                    </button>
+                    <button class="example-btn" data-text="Hi Sarah, can we reschedule our meeting to tomorrow at 2 PM? Let me know if that works for you.">
+                        Legitimate Example 1
+                    </button>
+                    <button class="example-btn" data-text="LIMITED TIME OFFER! Get 90% discount on all products NOW! Only $0.99 for premium access!">
+                        Spam Example 2
+                    </button>
+                    <button class="example-btn" data-text="Team meeting notes have been attached. Please review and provide your feedback by end of day.">
+                        Legitimate Example 2
+                    </button>
+                </div>
+            </section>
+
+            <!-- Statistics Section -->
+            <section class="stats-section">
+                <h2>📊 Statistics</h2>
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon">📈</div>
+                        <div class="stat-label">Total Classified</div>
+                        <div class="stat-value" id="totalClassified">0</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">🚨</div>
+                        <div class="stat-label">Spam Messages</div>
+                        <div class="stat-value" id="spamCount">0</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">✅</div>
+                        <div class="stat-label">Legitimate Messages</div>
+                        <div class="stat-value" id="legitimateCount">0</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">🎯</div>
+                        <div class="stat-label">Accuracy (from feedback)</div>
+                        <div class="stat-value" id="accuracy">0%</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- History Section -->
+            <section class="history-section">
+                <div class="history-header">
+                    <h2>📜 Classification History</h2>
+                    <button id="loadHistoryBtn" class="load-btn">Load Recent Classifications</button>
+                </div>
+                <div id="historyContainer" class="history-container"></div>
+            </section>
+
+            <!-- Info Section -->
+            <section class="info-section">
+                <h2>How It Works</h2>
+                <div class="info-grid">
+                    <div class="info-card">
+                        <span class="info-icon">1️⃣</span>
+                        <h3>Enter Message</h3>
+                        <p>Paste your email or message in the text area above</p>
+                    </div>
+                    <div class="info-card">
+                        <span class="info-icon">2️⃣</span>
+                        <h3>Preprocessing</h3>
+                        <p>Text is cleaned, normalized, and stopwords are removed</p>
+                    </div>
+                    <div class="info-card">
+                        <span class="info-icon">3️⃣</span>
+                        <h3>AI Classification</h3>
+                        <p>Machine Learning model analyzes the text features</p>
+                    </div>
+                    <div class="info-card">
+                        <span class="info-icon">4️⃣</span>
+                        <h3>Get Result</h3>
+                        <p>Receive instant classification with confidence score</p>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>&copy; 2024 CodeAlpha Spam Classifier. Built with ❤️ using Flask & Machine Learning</p>
+        </footer>
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
